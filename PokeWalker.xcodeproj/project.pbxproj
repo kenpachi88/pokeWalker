@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B9C777A11D3BF2930094EFA5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C777A01D3BF2930094EFA5 /* main.m */; };
+		B9C777A41D3BF2930094EFA5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C777A31D3BF2930094EFA5 /* AppDelegate.m */; };
+		B9C777A71D3BF2930094EFA5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C777A61D3BF2930094EFA5 /* ViewController.m */; };
+		B9C777AA1D3BF2930094EFA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C777A81D3BF2930094EFA5 /* Main.storyboard */; };
+		B9C777AC1D3BF2930094EFA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C777AB1D3BF2930094EFA5 /* Assets.xcassets */; };
+		B9C777AF1D3BF2930094EFA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C777AD1D3BF2930094EFA5 /* LaunchScreen.storyboard */; };
+		B9C777BA1D3BF2930094EFA5 /* PokeWalkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C777B91D3BF2930094EFA5 /* PokeWalkerTests.m */; };
+		B9C777C51D3BF2930094EFA5 /* PokeWalkerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C777C41D3BF2930094EFA5 /* PokeWalkerUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B9C777B61D3BF2930094EFA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9C777941D3BF2930094EFA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9C7779B1D3BF2930094EFA5;
+			remoteInfo = PokeWalker;
+		};
+		B9C777C11D3BF2930094EFA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9C777941D3BF2930094EFA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9C7779B1D3BF2930094EFA5;
+			remoteInfo = PokeWalker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B9C7779C1D3BF2930094EFA5 /* PokeWalker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeWalker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C777A01D3BF2930094EFA5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B9C777A21D3BF2930094EFA5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B9C777A31D3BF2930094EFA5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B9C777A51D3BF2930094EFA5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B9C777A61D3BF2930094EFA5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B9C777A91D3BF2930094EFA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B9C777AB1D3BF2930094EFA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B9C777AE1D3BF2930094EFA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B9C777B01D3BF2930094EFA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9C777B51D3BF2930094EFA5 /* PokeWalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeWalkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C777B91D3BF2930094EFA5 /* PokeWalkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokeWalkerTests.m; sourceTree = "<group>"; };
+		B9C777BB1D3BF2930094EFA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9C777C01D3BF2930094EFA5 /* PokeWalkerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeWalkerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C777C41D3BF2930094EFA5 /* PokeWalkerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokeWalkerUITests.m; sourceTree = "<group>"; };
+		B9C777C61D3BF2930094EFA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B9C777991D3BF2930094EFA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C777B21D3BF2930094EFA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C777BD1D3BF2930094EFA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B9C777931D3BF2930094EFA5 = {
+			isa = PBXGroup;
+			children = (
+				B9C7779E1D3BF2930094EFA5 /* PokeWalker */,
+				B9C777B81D3BF2930094EFA5 /* PokeWalkerTests */,
+				B9C777C31D3BF2930094EFA5 /* PokeWalkerUITests */,
+				B9C7779D1D3BF2930094EFA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B9C7779D1D3BF2930094EFA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9C7779C1D3BF2930094EFA5 /* PokeWalker.app */,
+				B9C777B51D3BF2930094EFA5 /* PokeWalkerTests.xctest */,
+				B9C777C01D3BF2930094EFA5 /* PokeWalkerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B9C7779E1D3BF2930094EFA5 /* PokeWalker */ = {
+			isa = PBXGroup;
+			children = (
+				B9C777A21D3BF2930094EFA5 /* AppDelegate.h */,
+				B9C777A31D3BF2930094EFA5 /* AppDelegate.m */,
+				B9C777A51D3BF2930094EFA5 /* ViewController.h */,
+				B9C777A61D3BF2930094EFA5 /* ViewController.m */,
+				B9C777A81D3BF2930094EFA5 /* Main.storyboard */,
+				B9C777AB1D3BF2930094EFA5 /* Assets.xcassets */,
+				B9C777AD1D3BF2930094EFA5 /* LaunchScreen.storyboard */,
+				B9C777B01D3BF2930094EFA5 /* Info.plist */,
+				B9C7779F1D3BF2930094EFA5 /* Supporting Files */,
+			);
+			path = PokeWalker;
+			sourceTree = "<group>";
+		};
+		B9C7779F1D3BF2930094EFA5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B9C777A01D3BF2930094EFA5 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B9C777B81D3BF2930094EFA5 /* PokeWalkerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B9C777B91D3BF2930094EFA5 /* PokeWalkerTests.m */,
+				B9C777BB1D3BF2930094EFA5 /* Info.plist */,
+			);
+			path = PokeWalkerTests;
+			sourceTree = "<group>";
+		};
+		B9C777C31D3BF2930094EFA5 /* PokeWalkerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B9C777C41D3BF2930094EFA5 /* PokeWalkerUITests.m */,
+				B9C777C61D3BF2930094EFA5 /* Info.plist */,
+			);
+			path = PokeWalkerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B9C7779B1D3BF2930094EFA5 /* PokeWalker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C777C91D3BF2930094EFA5 /* Build configuration list for PBXNativeTarget "PokeWalker" */;
+			buildPhases = (
+				B9C777981D3BF2930094EFA5 /* Sources */,
+				B9C777991D3BF2930094EFA5 /* Frameworks */,
+				B9C7779A1D3BF2930094EFA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PokeWalker;
+			productName = PokeWalker;
+			productReference = B9C7779C1D3BF2930094EFA5 /* PokeWalker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B9C777B41D3BF2930094EFA5 /* PokeWalkerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C777CC1D3BF2930094EFA5 /* Build configuration list for PBXNativeTarget "PokeWalkerTests" */;
+			buildPhases = (
+				B9C777B11D3BF2930094EFA5 /* Sources */,
+				B9C777B21D3BF2930094EFA5 /* Frameworks */,
+				B9C777B31D3BF2930094EFA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9C777B71D3BF2930094EFA5 /* PBXTargetDependency */,
+			);
+			name = PokeWalkerTests;
+			productName = PokeWalkerTests;
+			productReference = B9C777B51D3BF2930094EFA5 /* PokeWalkerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B9C777BF1D3BF2930094EFA5 /* PokeWalkerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C777CF1D3BF2930094EFA5 /* Build configuration list for PBXNativeTarget "PokeWalkerUITests" */;
+			buildPhases = (
+				B9C777BC1D3BF2930094EFA5 /* Sources */,
+				B9C777BD1D3BF2930094EFA5 /* Frameworks */,
+				B9C777BE1D3BF2930094EFA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9C777C21D3BF2930094EFA5 /* PBXTargetDependency */,
+			);
+			name = PokeWalkerUITests;
+			productName = PokeWalkerUITests;
+			productReference = B9C777C01D3BF2930094EFA5 /* PokeWalkerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9C777941D3BF2930094EFA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = kenny;
+				TargetAttributes = {
+					B9C7779B1D3BF2930094EFA5 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					B9C777B41D3BF2930094EFA5 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = B9C7779B1D3BF2930094EFA5;
+					};
+					B9C777BF1D3BF2930094EFA5 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = B9C7779B1D3BF2930094EFA5;
+					};
+				};
+			};
+			buildConfigurationList = B9C777971D3BF2930094EFA5 /* Build configuration list for PBXProject "PokeWalker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B9C777931D3BF2930094EFA5;
+			productRefGroup = B9C7779D1D3BF2930094EFA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B9C7779B1D3BF2930094EFA5 /* PokeWalker */,
+				B9C777B41D3BF2930094EFA5 /* PokeWalkerTests */,
+				B9C777BF1D3BF2930094EFA5 /* PokeWalkerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9C7779A1D3BF2930094EFA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C777AF1D3BF2930094EFA5 /* LaunchScreen.storyboard in Resources */,
+				B9C777AC1D3BF2930094EFA5 /* Assets.xcassets in Resources */,
+				B9C777AA1D3BF2930094EFA5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C777B31D3BF2930094EFA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C777BE1D3BF2930094EFA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9C777981D3BF2930094EFA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C777A71D3BF2930094EFA5 /* ViewController.m in Sources */,
+				B9C777A41D3BF2930094EFA5 /* AppDelegate.m in Sources */,
+				B9C777A11D3BF2930094EFA5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C777B11D3BF2930094EFA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C777BA1D3BF2930094EFA5 /* PokeWalkerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C777BC1D3BF2930094EFA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C777C51D3BF2930094EFA5 /* PokeWalkerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B9C777B71D3BF2930094EFA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9C7779B1D3BF2930094EFA5 /* PokeWalker */;
+			targetProxy = B9C777B61D3BF2930094EFA5 /* PBXContainerItemProxy */;
+		};
+		B9C777C21D3BF2930094EFA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9C7779B1D3BF2930094EFA5 /* PokeWalker */;
+			targetProxy = B9C777C11D3BF2930094EFA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B9C777A81D3BF2930094EFA5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9C777A91D3BF2930094EFA5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B9C777AD1D3BF2930094EFA5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9C777AE1D3BF2930094EFA5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B9C777C71D3BF2930094EFA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B9C777C81D3BF2930094EFA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B9C777CA1D3BF2930094EFA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PokeWalker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = my.PokeWalker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B9C777CB1D3BF2930094EFA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PokeWalker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = my.PokeWalker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B9C777CD1D3BF2930094EFA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PokeWalkerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = my.PokeWalkerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokeWalker.app/PokeWalker";
+			};
+			name = Debug;
+		};
+		B9C777CE1D3BF2930094EFA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PokeWalkerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = my.PokeWalkerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokeWalker.app/PokeWalker";
+			};
+			name = Release;
+		};
+		B9C777D01D3BF2930094EFA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PokeWalkerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = my.PokeWalkerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PokeWalker;
+			};
+			name = Debug;
+		};
+		B9C777D11D3BF2930094EFA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PokeWalkerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = my.PokeWalkerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PokeWalker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B9C777971D3BF2930094EFA5 /* Build configuration list for PBXProject "PokeWalker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C777C71D3BF2930094EFA5 /* Debug */,
+				B9C777C81D3BF2930094EFA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9C777C91D3BF2930094EFA5 /* Build configuration list for PBXNativeTarget "PokeWalker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C777CA1D3BF2930094EFA5 /* Debug */,
+				B9C777CB1D3BF2930094EFA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B9C777CC1D3BF2930094EFA5 /* Build configuration list for PBXNativeTarget "PokeWalkerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C777CD1D3BF2930094EFA5 /* Debug */,
+				B9C777CE1D3BF2930094EFA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B9C777CF1D3BF2930094EFA5 /* Build configuration list for PBXNativeTarget "PokeWalkerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C777D01D3BF2930094EFA5 /* Debug */,
+				B9C777D11D3BF2930094EFA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B9C777941D3BF2930094EFA5 /* Project object */;
+}
