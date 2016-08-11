@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import <GoogleMaps/GoogleMaps.h>
+//#import "UIView+customFont.h"
 @interface AppDelegate ()
 
 @end
@@ -17,7 +18,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [GMSServices provideAPIKey:@"AIzaSyAoFqie1qfMp14qq9tp9Mr-psEFI5H0o58"];
+    [[UILabel appearance] setFont:[UIFont fontWithName:@"PokemonGB" size:12]];
+      [UILabel appearanceWhenContainedInInstancesOfClasses:@[[UIView class]]].font = [UIFont fontWithName:@"PokemonGB" size:8 ];
+
+    
     return YES;
+}
+static dispatch_once_t once;
+static NSOperationQueue *connectionQueue;
++ (NSOperationQueue *)connectionQueue
+{
+    dispatch_once(&once, ^{
+        connectionQueue = [[NSOperationQueue alloc] init];
+        [connectionQueue setMaxConcurrentOperationCount:2];
+        [connectionQueue setName:@"searchqueue"];
+    });
+    return connectionQueue;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
