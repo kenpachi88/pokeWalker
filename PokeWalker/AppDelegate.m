@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
-//#import "UIView+customFont.h"
+int count;
 @interface AppDelegate ()
 
 @end
@@ -19,10 +19,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [GMSServices provideAPIKey:@"AIzaSyAoFqie1qfMp14qq9tp9Mr-psEFI5H0o58"];
-    [[UILabel appearance] setFont:[UIFont fontWithName:@"PokemonGB" size:12]];
-      [UILabel appearanceWhenContainedInInstancesOfClasses:@[[UIView class]]].font = [UIFont fontWithName:@"PokemonGB" size:8 ];
-
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    count = 0;
+    if (count == 0) {
+        
     
+    SettingsViewController *controller = (SettingsViewController *)[mainStoryboard instantiateViewControllerWithIdentifier: @"SettingsViewController"];
+    [self.window.rootViewController presentViewController:controller animated:NO completion:nil];
+    
+    }
     return YES;
 }
 static dispatch_once_t once;
@@ -58,5 +64,4 @@ static NSOperationQueue *connectionQueue;
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 @end

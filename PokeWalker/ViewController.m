@@ -14,7 +14,6 @@
 
 @implementation ViewController {
     
-    CLLocationManager *locationManager;
     GMSMapView *mapView_;
 }
 
@@ -25,14 +24,16 @@
     self.searchBar.delegate = self;
     self.searchBar.layer.cornerRadius = 10.8f;
     self.searchBar.layer.borderColor = [UIColor blueColor].CGColor;
-    
+    [self updateRadius];
+
 }
 -(void)viewDidAppear:(BOOL)animated {
     [self addMap];
     
 }
 - (void) addMap {
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:locationManager.location.coordinate zoom:15];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:self.locationManager.location.coordinate zoom:15];
+    
     mapView_ = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.settings.myLocationButton = true;
@@ -40,16 +41,19 @@
     [self.mapView addSubview:mapView_];
 }
 - (void)turnOnGps {
-    if (nil == locationManager) {
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.distanceFilter = kCLDistanceFilterNone;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 100 m
-        [locationManager startUpdatingLocation];
+    if (nil == self.locationManager) {
+        self.self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest; // 100 m
+        [self.locationManager startUpdatingLocation];
     }
     
 }
-
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    self.location = [locations lastObject];
+}
 
 - (void) showButtons {
     [UIView beginAnimations:@"buttonShowUp" context:nil];
@@ -66,11 +70,6 @@
                                   self.label.frame.size.height);
     
     
-    // If you want to set them in the exact center of your view, you can replace
-    // self.label.frame.origin.x - move
-    // by the following
-    // (self.view.center - self.label.frame.size.width/2)
-    // This way, your button will be centered horizontally
     
     [UIView commitAnimations];
 }
@@ -81,6 +80,7 @@
 
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    NSLog(@"bar pressed");
     self.searchText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     [self performSearch];
     
@@ -110,32 +110,7 @@
 
 
 
--(void)performSearchwithCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    
-    
-    NSString *searchURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&key=AIzaSyDynVv-Ko_Xmg48bRdk4HbfUiDjq3g9UT4"
-                           ,coordinate.latitude,coordinate.longitude];
-    NSLog(@"%@",searchURL);
-    NSURLSession *session = [NSURLSession sharedSession];
-    [[session dataTaskWithURL:[NSURL URLWithString:searchURL]
-            completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
-                self.json = [NSJSONSerialization JSONObjectWithData: data
-                                                            options:0
-                                                              error:nil];
-                
-                NSArray *placeData = [[self.json valueForKey:@"results"] valueForKey:@"formatted_address"];
-                self.addressOftouched = placeData.firstObject;
-                GMSMarker *marker = [GMSMarker new];
-                marker.userData = [[NSDictionary alloc] initWithObjectsAndKeys:self.addressOftouched,@"address",
-                                   nil];
-                marker.position = coordinate;
-                marker.appearAnimation = kGMSMarkerAnimationPop;
-                marker.map=mapView_;
-            }] resume];
-    
-    
-}
+
 -(void)calculateDistance: (CLLocationCoordinate2D )destination {
     NSString *searchURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=%f,%f&destinations=%f,%f&mode=walking&key=AIzaSyAoFqie1qfMp14qq9tp9Mr-psEFI5H0o58",
                            self.location.coordinate.latitude,
@@ -145,20 +120,52 @@
     
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:searchURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
+        dispatch_async(dispatch_get_main_queue(), ^{
         self.distanceJson = [NSJSONSerialization JSONObjectWithData: data
                                                             options:0
                                                               error:nil];
         NSArray *distance = [self.distanceJson objectForKey:@"rows"];
-        NSLog(@"%@",distance);
+        NSLog(@"distance: %@",distance);
+        
+        for (NSDictionary *distanceData in distance) {
+            
+            NSMutableArray *array = [NSMutableArray arrayWithArray:[distanceData valueForKeyPath:@"elements.distance.text"]];
+            self.calculatedDistance = array.firstObject;
+        }
+        });
+    }] resume];
+    
+    
+    
+    
+    
+}
+-(void)reverseGeocodeCoordinate: (CLLocationCoordinate2D) coordinate completionHandler:(nonnull GMSReverseGeocodeCallback)handler {
+    
+}
+-(void)calculateDistanceForPokestop: (CLLocationCoordinate2D )destination {
+    NSString *searchURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=%f,%f&destinations=%f,%f&mode=walking&key=AIzaSyAoFqie1qfMp14qq9tp9Mr-psEFI5H0o58",
+                           self.location.coordinate.latitude,
+                           self.location.coordinate.longitude,
+                           destination.latitude,
+                           destination.longitude];
+    NSLog(@"url for calculate distance %@",searchURL);
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:searchURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
+        dispatch_async(dispatch_get_main_queue(), ^ {
+        self.distanceJson = [NSJSONSerialization JSONObjectWithData: data
+                                                            options:0
+                                                              error:nil];
+        NSArray *distance = [self.distanceJson objectForKey:@"rows"];
+        NSLog(@"distance: %@",distance);
         
         for (NSDictionary *distanceData in distance) {
             
             NSMutableArray *array = [NSMutableArray arrayWithArray:[distanceData valueForKeyPath:@"elements.distance.text"]];
             self.calculatedDistance = array.firstObject;
             
-            [self performSearchwithCoordinate:destination];
-            
         }
+        });
     }] resume];
     
     
@@ -167,25 +174,20 @@
     
 }
 
--(void)createInfoWindow {
-    
-}
 -(UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(nonnull GMSMarker *)marker
 {
     
     
-    
+
     CustomInfoWindow *infoWindow = [[[NSBundle mainBundle]loadNibNamed:@"InfoWindow" owner:self options:nil]objectAtIndex:0];
     infoWindow.coordinates = [[marker.userData objectForKey:@"coordinate"] MKCoordinateValue];
+    infoWindow.title.font = [UIFont fontWithName:@"PokemonGB" size:8 ];
     infoWindow.title.text = [marker.userData objectForKey:@"name"];
     infoWindow.address.text = [marker.userData objectForKey:@"address"];
+    infoWindow.address.font = [UIFont fontWithName:@"PokemonGB" size:8 ];
     infoWindow.imageView.image = [UIImage imageNamed:@"box.png"];
     infoWindow.distance.text = self.calculatedDistance;
-    
-    infoWindow.layer.cornerRadius = 10.8f;
-    
-    
-    
+    infoWindow.distance.font = [UIFont fontWithName:@"PokemonGB" size:8 ];
     
     
     return infoWindow;
@@ -193,7 +195,11 @@
 }
 -(void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+    [self calculateDistanceForPokestop:marker.position];
+    });
+
 }
 -(void)calculateDistanceFromSearch: (CLLocationCoordinate2D) destination {
     NSString *searchURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=%f,%f&destinations=%f,%f&mode=walking&key=AIzaSyAoFqie1qfMp14qq9tp9Mr-psEFI5H0o58",
@@ -208,7 +214,7 @@
                                                             options:0
                                                               error:nil];
         NSArray *distance = [self.distanceJson objectForKey:@"rows"];
-        NSLog(@"%@",distance);
+        NSLog(@"distance json:%@",distance);
         
         for (NSDictionary *distanceData in distance) {
             
@@ -224,13 +230,26 @@
 }
 - (void)mapView:(GMSMapView *)mapView
 didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [mapView_ clear];
-        [self calculateDistance:coordinate];
+    [self calculateDistance:coordinate];
+    [[GMSGeocoder geocoder]reverseGeocodeCoordinate:coordinate completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"%@",[error description]);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^ {
+        NSLog(@"%@",response.firstResult.thoroughfare);
+        NSString *address = [NSString stringWithFormat:@"%@ %@,%@ %@",response.firstResult.thoroughfare,response.firstResult.subLocality,response.firstResult.administrativeArea,response.firstResult.postalCode];
+        GMSMarker *tapMarker = [GMSMarker new];
+        tapMarker.position = CLLocationCoordinate2DMake(response.firstResult.coordinate.latitude, response.firstResult.coordinate.longitude);
+        NSValue *coordinate = [NSValue valueWithMKCoordinate:response.firstResult.coordinate];
+        tapMarker.userData = [[NSDictionary alloc] initWithObjectsAndKeys:coordinate,@"coordinate",
+                    address,@"address",
+                              @"",@"name",
+                           nil];
         
-    });
-    
-    
+        tapMarker.map = mapView_;
+        });
+    }];
+
 }
 
 -(void)createMarkerWithJson:(NSArray *)json
@@ -257,37 +276,10 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
 }
 - (BOOL)mapView:(GMSMapView *)mapView
    didTapMarker:(nonnull GMSMarker *)marker {
-    
-    return NO;
+    mapView.selectedMarker = marker;
+    return TRUE;
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations {
-    // If it's a relatively recent event, turn off updates to save power.
-    self.location = [locations lastObject];
-    //    NSDate* eventDate = self.location.timestamp;
-    //    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    //    if (abs(howRecent) < 15.0) {
-    //        GMSCircle *shortDistance = [[GMSCircle alloc]init];
-    //        shortDistance.position = self.location.coordinate;
-    //        shortDistance.radius = 2000;
-    //        shortDistance.strokeColor = [UIColor redColor];
-    //        shortDistance.strokeWidth = 3;
-    //        shortDistance.map = mapView_;
-    //        GMSCircle *mediumDistance = [[GMSCircle alloc]init];
-    //        mediumDistance.position = self.location.coordinate;
-    //        mediumDistance.radius = 5000;
-    //        mediumDistance.strokeColor = [UIColor blueColor];
-    //        mediumDistance.strokeWidth = 3;
-    //        mediumDistance.map = mapView_;
-    //        GMSCircle *longDistance = [[GMSCircle alloc]init];
-    //        longDistance.position = self.location.coordinate;
-    //        longDistance.radius = 10000;
-    //        longDistance.strokeWidth = 3;
-    //        longDistance.strokeColor = [UIColor orangeColor];
-    //        longDistance.map = mapView_;
-    //        self.speed.text = [NSString stringWithFormat:@"%f",self.location.speed];
-}
 -(void)drawCircles {
     
     GMSCircle *shortDistance = [[GMSCircle alloc]init];
@@ -311,37 +303,98 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(void)getPokestops {
-    NSMutableArray *colA = [[NSMutableArray alloc]init];
-    NSMutableArray *colB = [[NSMutableArray alloc]init];
-    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"PokeStop" ofType:@"csv"];
+    [mapView_ setMinZoom:15 maxZoom:19];
+
+    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"moreMarkers" ofType:@"csv"];
     NSString* content = [NSString stringWithContentsOfFile:filepath
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];
-    NSString *newString = [content stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    NSArray *allLines = [content componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    self.markers = [[NSMutableArray alloc]init];
+    
+    for (NSString *coordinates in allLines) {
+        
+        NSArray* rows = [coordinates componentsSeparatedByString:@","];
 
-    NSArray* rows = [newString componentsSeparatedByString:@"\n"];
-    for (NSString *coordinates in rows) {
-        NSArray *latlon = [coordinates componentsSeparatedByString:@","];
-        [colA addObject:latlon.firstObject];
-        [colB addObject:latlon.lastObject];
-//        NSLog(@"%@",colA);
-
+        CLLocationCoordinate2D markers = CLLocationCoordinate2DMake([[rows firstObject]floatValue], [[rows lastObject]floatValue]);
+        CLLocation *markerLocations = [[CLLocation alloc] initWithLatitude:markers.latitude longitude:markers.longitude];
+        [self.markers addObject:markerLocations];
+        
+        
     }
-
-
+    NSLog(@"marker:%@",self.markers);
+    
     
 }
+
+-(void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
+    [mapView_ clear];
+    GMSVisibleRegion region = mapView_.projection.visibleRegion;
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithRegion:region];
+    for (CLLocation *location in self.markers) {
+        if ([bounds containsCoordinate:location.coordinate]) {
+            GMSMarker *nyMarker = [GMSMarker new];
+            nyMarker.position = location.coordinate;
+            [nyMarker setTappable:NO];
+            nyMarker.map = mapView_;
+            
+        }
+    }
+    
+}
+
 - (IBAction)showLabelButton:(id)sender {
     [self showButtons];
     [self getPokestops];
-
-    self.calculatedDistance = 0;
+    [self.searchBar removeFromSuperview];
 }
-
+-(void)updateRadius {
+    NSDate* eventDate = self.location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (abs(howRecent) < 15.0) {
+        GMSCircle *shortDistance = [[GMSCircle alloc]init];
+        shortDistance.position = self.location.coordinate;
+        shortDistance.radius = 2000;
+        shortDistance.strokeColor = [UIColor redColor];
+        shortDistance.strokeWidth = 3;
+        shortDistance.map = mapView_;
+        GMSCircle *longDistance = [[GMSCircle alloc]init];
+        longDistance.position = self.location.coordinate;
+        longDistance.radius = 10000;
+        longDistance.strokeWidth = 3;
+        longDistance.strokeColor = [UIColor orangeColor];
+        longDistance.map = mapView_;
+    }
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+//-(void)performSearchwithCoordinate:(CLLocationCoordinate2D)coordinate
+//{
+//
+//
+//    NSString *searchURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?latlng=%f,%f&key=AIzaSyDynVv-Ko_Xmg48bRdk4HbfUiDjq3g9UT4"
+//                           ,coordinate.latitude,coordinate.longitude];
+//    NSLog(@"coordinate search : %@",searchURL);
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    [[session dataTaskWithURL:[NSURL URLWithString:searchURL]
+//            completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
+//                self.json = [NSJSONSerialization JSONObjectWithData: data
+//                                                            options:0
+//                                                              error:nil];
+//
+//                NSArray *placeData = [[self.json valueForKey:@"results"] valueForKey:@"formatted_address"];
+//                self.addressOftouched = placeData.firstObject;
+//                GMSMarker *marker = [GMSMarker new];
+//                marker.userData = [[NSDictionary alloc] initWithObjectsAndKeys:self.addressOftouched,@"address",
+//                                   nil];
+//                marker.position = coordinate;
+//                marker.appearAnimation = kGMSMarkerAnimationPop;
+//                marker.map=mapView_;
+//            }] resume];
+//
+//
+//}
 @end

@@ -16,14 +16,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    User *newUser = [User new];
+    newUser.name = self.nameField.text;
+    newUser.weight = [NSNumber numberWithInteger:self.weightField.text.integerValue];
+    float feet = self.feetField.text.integerValue;
+    float inches = self.inchesField.text.integerValue;
+    newUser.height = [NSNumber numberWithFloat:((feet*12)+inches)*2.54];
+    NSData *archivedObject = [  NSKeyedArchiver archivedDataWithRootObject:newUser];
+    newUser.age = [NSNumber numberWithInteger:self.ageField.text.integerValue];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:archivedObject forKey:@"user"];
+    [defaults synchronize];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

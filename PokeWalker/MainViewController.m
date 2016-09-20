@@ -5,10 +5,8 @@
 //  Created by kenny on 8/8/16.
 //  Copyright © 2016 kenny. All rights reserved.
 //
-
 #import "MainViewController.h"
-@import CoreMotion;
-@import CoreLocation;
+#import <AVFoundation/AVFoundation.h>
 @interface MainViewController ()
 
 @end
@@ -19,18 +17,76 @@
     [super viewDidLoad];
     [self turnOnGps];
     [self turnOnTelemetry];
+    [self cameraLiveView];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *archivedObject = [defaults objectForKey:@"user"];
+    User *obj = (User *)[NSKeyedUnarchiver unarchiveObjectWithData:archivedObject];
+    NSLog(@"%@", obj.name);
+}
+-(void)cameraLiveView {
+
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    session.sessionPreset = AVCaptureSessionPresetHigh;
     
-    // Do any additional setup after loading the view.
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSError *error = nil;
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+    if (input == NULL) {
+        NSLog(@"nil camera");
+    }
+
+    [session addInput:input];
+    
+    AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+    newCaptureVideoPreviewLayer.frame = self.view.bounds;
+    
+    [self.view.layer insertSublayer:newCaptureVideoPreviewLayer atIndex:0];
+    
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    
+    // add effect to an effect view
+
+    
+    // add the effect view to the image view
+    UIVibrancyEffect *vibrancy = [UIVibrancyEffect effectForBlurEffect:blur];
+    
+    // add blur to an effect view
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    effectView.frame = self.view.frame;
+    
+    // add vibrancy to yet another effect view
+    UIVisualEffectView *vibrantView = [[UIVisualEffectView alloc]initWithEffect:vibrancy];
+    vibrantView.frame = self.view.frame;
+    
+    // add both effect views to the image view
+//    [self.view insertSubview:effectView atIndex:1];
+
+//    [self.view insertSubview:vibrantView atIndex:2];
+    [session startRunning];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"popoverMap"]) {
         ViewController *vc = [segue destinationViewController];
-        
+        UIPopoverPresentationController *mapPop = vc.popoverPresentationController;
         vc.modalPresentationStyle = UIModalPresentationPopover;
         vc.popoverPresentationController.delegate = self;
+        vc.preferredContentSize = self.view.frame.size;
+        mapPop.sourceRect = ((UIView *)sender).bounds;
         
     }
+    if ([segue.identifier isEqualToString:@"popSettings"]) {
+        SettingsViewController *svc = [segue destinationViewController];
+        UIPopoverPresentationController *settingsPop = svc.popoverPresentationController;
+        svc.modalPresentationStyle = UIModalPresentationPopover;
+        svc.preferredContentSize = self.view.frame.size;
+        settingsPop.delegate = self;
+        settingsPop.sourceRect = ((UIView *)sender).bounds;
+        
+
+    }
+    
 }
 - (void)turnOnTelemetry {
     if ([CMMotionActivityManager isActivityAvailable]) {
@@ -81,10 +137,12 @@
     formatter.maximumFractionDigits = 2;
     
     // step counting
+    [self.stepsProgressBar setValue:pedometerData.numberOfSteps.floatValue animateWithDuration:1];
+
     
-    self.stepsCount.text = [NSString stringWithFormat:@"Steps: %@", [formatter stringFromNumber:pedometerData.numberOfSteps]];
     
-    // distance
+    // calories burned
+    [self.caloriesBurnedBar setValue:pedometerData.numberOfSteps.floatValue/20 animateWithDuration:1];
     
     self.meters.text = [NSString stringWithFormat:@"Meters: %@ ", [formatter stringFromNumber:pedometerData.distance]];
     // pace
@@ -112,6 +170,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations {
+    // If it's a relatively recent event, turn off updates to save power.
+    self.location = [locations lastObject];
+    self.speed.text = [NSString stringWithFormat:@"%f",self.location.speed];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -121,5 +186,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

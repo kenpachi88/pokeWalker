@@ -13,6 +13,7 @@
 #import <MapKit/MapKit.h>
 #import "CustomInfoWindow.h"
 #import "SettingsViewController.h"
+
 @interface ViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
@@ -40,6 +41,7 @@
 @property (strong, nonatomic) NSString *addressOftouched;
 @property (nonatomic) NSString *calculatedDistance;
 @property (nonatomic) ViewController *viewController;
+@property (nonatomic) NSMutableArray *markers;
 -(void)calculateDistance: (CLLocationCoordinate2D )destination;
 
 
