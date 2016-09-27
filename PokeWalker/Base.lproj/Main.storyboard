@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2Ox-4n-5bu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2Ox-4n-5bu">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -78,61 +78,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jeS-88-mph">
-                                <frame key="frameInset" minX="248" minY="214" width="100" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Weight" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3YM-zi-ROu">
-                                <frame key="frameInset" minX="248" minY="319" width="100" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ft" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="spW-XJ-L7d">
-                                <frame key="frameInset" minX="249" minY="285" width="33" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1H-0M-nT3" userLabel="Container View ">
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2eI-cn-p8w">
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="lbs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XYK-ek-olc">
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ft" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="37K-Ib-eCl">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="33" id="qsy-AV-UAM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Inches" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHD-1W-v2S">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OnA-ZB-9Dg">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="cjX-u5-unr"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="33" id="bZy-Rr-kaT"/>
+                                    <constraint firstItem="OnA-ZB-9Dg" firstAttribute="leading" secondItem="2eI-cn-p8w" secondAttribute="leading" id="0rU-M2-aPy"/>
+                                    <constraint firstItem="2eI-cn-p8w" firstAttribute="top" secondItem="OnA-ZB-9Dg" secondAttribute="bottom" constant="4" id="E53-2s-XPD"/>
+                                    <constraint firstItem="hHD-1W-v2S" firstAttribute="leading" secondItem="37K-Ib-eCl" secondAttribute="trailing" constant="2" id="GKa-PB-lKR"/>
+                                    <constraint firstItem="37K-Ib-eCl" firstAttribute="baseline" secondItem="hHD-1W-v2S" secondAttribute="baseline" id="I59-gJ-vEW"/>
+                                    <constraint firstItem="XYK-ek-olc" firstAttribute="top" secondItem="37K-Ib-eCl" secondAttribute="bottom" constant="4" id="IVe-To-s2c"/>
+                                    <constraint firstItem="37K-Ib-eCl" firstAttribute="top" secondItem="2eI-cn-p8w" secondAttribute="bottom" constant="41" id="Iqu-Bg-sWg"/>
+                                    <constraint firstAttribute="bottom" secondItem="XYK-ek-olc" secondAttribute="bottom" constant="8" id="Jue-T6-WSo"/>
+                                    <constraint firstAttribute="trailing" secondItem="OnA-ZB-9Dg" secondAttribute="trailing" constant="8" id="V3V-Sc-e9J"/>
+                                    <constraint firstItem="hHD-1W-v2S" firstAttribute="trailing" secondItem="XYK-ek-olc" secondAttribute="trailing" id="ZR4-2y-Jux"/>
+                                    <constraint firstItem="OnA-ZB-9Dg" firstAttribute="trailing" secondItem="2eI-cn-p8w" secondAttribute="trailing" id="eSd-Px-Ccn"/>
+                                    <constraint firstItem="2eI-cn-p8w" firstAttribute="leading" secondItem="XYK-ek-olc" secondAttribute="leading" id="fiO-aj-muD"/>
+                                    <constraint firstItem="OnA-ZB-9Dg" firstAttribute="top" secondItem="a1H-0M-nT3" secondAttribute="top" constant="8" id="iUV-78-SJM"/>
+                                    <constraint firstItem="OnA-ZB-9Dg" firstAttribute="leading" secondItem="a1H-0M-nT3" secondAttribute="leading" constant="8" id="kNq-N6-IR7"/>
+                                    <constraint firstItem="2eI-cn-p8w" firstAttribute="trailing" secondItem="hHD-1W-v2S" secondAttribute="trailing" id="lcj-s6-xsB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Inches" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4fl-Am-XKa">
-                                <frame key="frameInset" minX="284" minY="285" width="64" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J84-iu-Dex">
-                                <frame key="frameInset" minX="248" minY="180" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="xUu-dd-jrk"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="J84-iu-Dex" firstAttribute="trailing" secondItem="jeS-88-mph" secondAttribute="trailing" id="2aP-tk-qNr"/>
-                            <constraint firstItem="4fl-Am-XKa" firstAttribute="leading" secondItem="spW-XJ-L7d" secondAttribute="trailing" constant="2" id="5E7-Id-FmO"/>
-                            <constraint firstItem="3YM-zi-ROu" firstAttribute="top" secondItem="spW-XJ-L7d" secondAttribute="bottom" constant="4" id="DId-eK-0vP"/>
-                            <constraint firstItem="spW-XJ-L7d" firstAttribute="baseline" secondItem="4fl-Am-XKa" secondAttribute="baseline" id="Qry-11-jIT"/>
-                            <constraint firstItem="spW-XJ-L7d" firstAttribute="centerY" secondItem="5Iu-bB-54D" secondAttribute="centerY" id="SuR-9w-B25"/>
-                            <constraint firstItem="J84-iu-Dex" firstAttribute="leading" secondItem="5Iu-bB-54D" secondAttribute="leading" constant="248" id="a7j-w7-tns"/>
-                            <constraint firstItem="4fl-Am-XKa" firstAttribute="trailing" secondItem="3YM-zi-ROu" secondAttribute="trailing" id="fKA-NZ-2i0"/>
-                            <constraint firstItem="J84-iu-Dex" firstAttribute="leading" secondItem="jeS-88-mph" secondAttribute="leading" id="hYo-Li-YXQ"/>
-                            <constraint firstItem="jeS-88-mph" firstAttribute="top" secondItem="J84-iu-Dex" secondAttribute="bottom" constant="4" id="jBa-6t-Uqo"/>
-                            <constraint firstItem="WtL-FF-UTM" firstAttribute="top" secondItem="3YM-zi-ROu" secondAttribute="bottom" constant="252" id="wtU-tS-HGh"/>
+                            <constraint firstItem="a1H-0M-nT3" firstAttribute="centerX" secondItem="5Iu-bB-54D" secondAttribute="centerX" id="6pn-cg-Dcg"/>
+                            <constraint firstItem="a1H-0M-nT3" firstAttribute="centerY" secondItem="5Iu-bB-54D" secondAttribute="centerY" id="kjq-zR-1dK"/>
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="600" height="600"/>
                     <connections>
-                        <outlet property="ageField" destination="jeS-88-mph" id="cim-mu-Tfs"/>
-                        <outlet property="feetField" destination="spW-XJ-L7d" id="BrP-dY-ipw"/>
-                        <outlet property="inchesField" destination="4fl-Am-XKa" id="dCv-1G-Nqg"/>
-                        <outlet property="nameField" destination="J84-iu-Dex" id="gAr-85-a4d"/>
-                        <outlet property="weightField" destination="3YM-zi-ROu" id="OYf-1Z-T7b"/>
+                        <outlet property="ageField" destination="2eI-cn-p8w" id="29t-DR-uLE"/>
+                        <outlet property="feetField" destination="37K-Ib-eCl" id="rbN-M1-7Ty"/>
+                        <outlet property="inchesField" destination="hHD-1W-v2S" id="nEQ-Jr-PqD"/>
+                        <outlet property="nameField" destination="OnA-ZB-9Dg" id="aMg-Ux-N8A"/>
+                        <outlet property="weightField" destination="XYK-ek-olc" id="7PS-Az-Nxq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAb-8r-bWp" userLabel="First Responder" sceneMemberID="firstResponder"/>

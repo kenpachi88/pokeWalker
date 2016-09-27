@@ -35,7 +35,7 @@
     if (input == NULL) {
         NSLog(@"nil camera");
     }
-
+    
     [session addInput:input];
     
     AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
@@ -58,10 +58,10 @@
     // add vibrancy to yet another effect view
     UIVisualEffectView *vibrantView = [[UIVisualEffectView alloc]initWithEffect:vibrancy];
     vibrantView.frame = self.view.frame;
-    
-    // add both effect views to the image view
+//    
+//     add both effect views to the image view
 //    [self.view insertSubview:effectView atIndex:1];
-
+//
 //    [self.view insertSubview:vibrantView atIndex:2];
     [session startRunning];
 }
@@ -95,7 +95,7 @@
         self.motionActivityManager = [[CMMotionActivityManager alloc]init];
         [self.motionActivityManager startActivityUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMMotionActivity *activity)
          {
-             [self updateMotion:activity];
+//             [self updateMotion:activity];
          }];
         
         
@@ -109,27 +109,27 @@
     }
     
 }
-- (void)updateMotion:(CMMotionActivity *)activity {
-    if (activity.walking == true)
-    {
-        self.motionStatus.text = @"Walking!";
-        
-    }
-    else if
-        (activity.running == true) {
-            self.motionStatus.text = @"Running!";
-            
-        }
-    else if
-        (activity.automotive == true) {
-            self.motionStatus.text = @"Vehicle!";
-        }
-    else if
-        (activity.cycling == true) {
-            self.motionStatus.text = @"cycling!";
-        }
-    
-}
+//- (void)updateMotion:(CMMotionActivity *)activity {
+//    if (activity.walking == true)
+//    {
+//        self.motionStatus.text = @"Walking!";
+//        
+//    }
+//    else if
+//        (activity.running == true) {
+//            self.motionStatus.text = @"Running!";
+//            
+//        }
+//    else if
+//        (activity.automotive == true) {
+//            self.motionStatus.text = @"Vehicle!";
+//        }
+//    else if
+//        (activity.cycling == true) {
+//            self.motionStatus.text = @"cycling!";
+//        }
+//    
+//}
 
 - (void)updateLabels:(CMPedometerData *)pedometerData {
     
@@ -145,7 +145,6 @@
     [self.caloriesBurnedBar setValue:pedometerData.numberOfSteps.floatValue/20 animateWithDuration:1];
     
     self.meters.text = [NSString stringWithFormat:@"Meters: %@ ", [formatter stringFromNumber:pedometerData.distance]];
-    // pace
     
     
     

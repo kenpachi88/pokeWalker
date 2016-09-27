@@ -1,0 +1,13 @@
+//
+//  PokeWalker-Prefix.pch
+//  PokeWalker
+//
+//  Created by kenny on 8/12/16.
+//  Copyright © 2016 kenny. All rights reserved.
+//
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#endif

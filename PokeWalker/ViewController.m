@@ -25,11 +25,9 @@
     self.searchBar.layer.cornerRadius = 10.8f;
     self.searchBar.layer.borderColor = [UIColor blueColor].CGColor;
     [self updateRadius];
-
 }
 -(void)viewDidAppear:(BOOL)animated {
     [self addMap];
-    
 }
 - (void) addMap {
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithTarget:self.locationManager.location.coordinate zoom:15];
@@ -80,7 +78,6 @@
 
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSLog(@"bar pressed");
     self.searchText = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     [self performSearch];
     
@@ -106,9 +103,6 @@
             }] resume];
     
 }
-
-
-
 
 
 -(void)calculateDistance: (CLLocationCoordinate2D )destination {
@@ -168,16 +162,10 @@
         });
     }] resume];
     
-    
-    
-    
-    
 }
 
 -(UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(nonnull GMSMarker *)marker
 {
-    
-    
 
     CustomInfoWindow *infoWindow = [[[NSBundle mainBundle]loadNibNamed:@"InfoWindow" owner:self options:nil]objectAtIndex:0];
     infoWindow.coordinates = [[marker.userData objectForKey:@"coordinate"] MKCoordinateValue];
@@ -201,6 +189,7 @@
     });
 
 }
+
 -(void)calculateDistanceFromSearch: (CLLocationCoordinate2D) destination {
     NSString *searchURL = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=%f,%f&destinations=%f,%f&mode=walking&key=AIzaSyAoFqie1qfMp14qq9tp9Mr-psEFI5H0o58",
                            self.location.coordinate.latitude,
@@ -223,10 +212,7 @@
             
         }
     }] resume];
-    
-    
-    
-    
+
 }
 - (void)mapView:(GMSMapView *)mapView
 didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
@@ -324,7 +310,6 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
         
         
     }
-    NSLog(@"marker:%@",self.markers);
     
     
 }
@@ -353,7 +338,7 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
 -(void)updateRadius {
     NSDate* eventDate = self.location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 15.0) {
+    if (fabs(howRecent) < 15.0) {
         GMSCircle *shortDistance = [[GMSCircle alloc]init];
         shortDistance.position = self.location.coordinate;
         shortDistance.radius = 2000;
